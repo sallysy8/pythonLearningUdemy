@@ -1,22 +1,22 @@
 import math
-# '''
-# this is OOP in python with udemy
-# '''
-# class Dog():
-#     #class object attribute
-#     #same for any instance of a class
-#     species = 'mammal'
+'''
+this is OOP in python with udemy
+'''
+class Dog():
+    #class object attribute
+    #same for any instance of a class
+    species = 'mammal'
 
 
-#     def __init__(self,breed,name):
-#         self.breed = breed
-#         self.name = name
+    def __init__(self,breed,name):
+        self.breed = breed
+        self.name = name
     
-#     def bark(self):
-#         print('WOOF! My name is {}'.format(self.name))
+    def bark(self):
+        print('WOOF! My name is {}'.format(self.name))
     
-# my_dog = Dog(breed="Husky", name='Sally')
-# print(my_dog.bark())
+my_dog = Dog(breed="Husky", name='Sally')
+print(my_dog.bark())
 
 
 class Circle():
@@ -104,12 +104,11 @@ class Cylinder:
         self.radius = radius
 
     def volume(self):
-        return self.pi*self.radius*self.radius*self.height
+        return self.pi*(self.radius)**2 *self.height
         
 
     def surface_area(self):
-        return self.pi*2*self.radius*self.height + self.pi*2*self.radius*self.radius
-       
+        return self.pi*2*self.radius*self.height + self.pi*2*(self.radius)**2
 
 c = Cylinder(2, 3)
 
@@ -122,10 +121,6 @@ print(c.surface_area())
 
 coordinate1 = (3,2)
 coordinate2 = (8,10)
-
-li = Line(coordinate1,coordinate2)
-In [3]:
-li.distance()
 Out[3]:
 9.433981132056603
 In [4]:
@@ -141,13 +136,71 @@ class Line:
         self.coor2 = coor2
 
     def distance(self):
-        return sqrt((self.coor1[0]-self.coor2[0])**2 + (self.coor1[1]-self.coor2[1]**2)
+        return math.sqrt((self.coor1[0]-self.coor2[0])**2 + (self.coor1[1]-self.coor2[1])**2)
+    
+    def slope(self):
+        return (self.coor2[1]-self.coor1[1]) / (self.coor2[0]-self.coor1[0])
 
-#coordinate2=(8, 10)
-#li=Line(coordinate1, coordinate2)
-#li.distance()
 
-coordinate1 = (2, 3)
-coordinate2 = (8, 10)
-li=Line(coordinate1, coordinate2)
+point1 = (3,2)
+point2 = (8,10)
+li=Line(point1, point2)
+print('The distance is {}'.format(li.distance()))
+print('The slope is {}'.format(li.slope()))
 
+'''
+simple example of class
+'''
+
+class Simple:
+    def __init__(self, amount):
+        self.amount = amount
+    def add_amount(self, deposit):
+        self.amount = self.amount + deposit
+
+myAcct = Simple(200)
+print(myAcct.amount)
+myAcct.add_amount(300)
+print(myAcct.amount)
+
+'''
+For this challenge, create a bank account class that has two attributes:
+
+owner
+balance
+and two methods:
+
+deposit
+withdraw
+As an added requirement, withdrawals may not exceed the available balance.
+
+Instantiate your class, make several deposits and withdrawals, and test to make sure the account can't be overdrawn.
+'''
+class BankAcct:
+    def __init__(self, owner, balance):
+        self.owner = owner
+        self.balance = balance
+        print('Account Owner is {}'.format(self.owner))
+        print('Account Balance is {}'.format(self.balance))
+
+    def deposit(self, amount):
+        self.balance = self.balance + amount
+        print(f'Deposit Accepted {amount}')
+    
+    def withdraw(self, amount):
+        self.balance = self.balance - amount
+        if self.balance >= 0:
+            print(f'Withdrawal Accepted {amount}')
+        else:
+            print('Funds Unavailable!') 
+
+
+person1 = BankAcct('Sally', 200)
+print(person1.owner)
+print(person1.balance)
+person1.deposit(100)
+print(person1.balance)
+person1.withdraw(50)
+print(person1.balance)
+person1.withdraw(400)
+print(person1.balance)
