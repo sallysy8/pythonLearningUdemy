@@ -50,6 +50,8 @@ def hw2():
         z = x / y
     except ZeroDivisionError:
         print("Can't division by zero")
+    finally:
+        print("All done!")
 
 
 hw2()
@@ -85,4 +87,6 @@ def hw3():
         finally:
             print("End of try")
 
+
 hw3()
+
